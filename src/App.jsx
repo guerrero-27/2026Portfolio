@@ -65,6 +65,24 @@ const EXPERIENCES = [
 
 const PROJECTS = [
   {
+    title: "Travel Website Landing Page",
+    desc: "A responsive travel website UI showcasing destinations, tour packages, and booking interface, designed to highlight tourism services with a clean and structured layout.",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    live: "https://guerrero-27.github.io/travel_website/",
+  },
+  {
+    title: "Gym Fitness Website UI",
+    desc: "A responsive fitness website UI featuring training sections, trainer profiles, and contact interface, designed to showcase gym services and attract potential clients.",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    live: "https://guerrero-27.github.io/gym_website/",
+  },
+  {
+    title: "Healthcare Plus Medical UI",
+    desc: "A healthcare service landing page featuring structured medical information, treatment sections, and responsive layout designed for medical tourism and healthcare services.",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    live: "https://healthcareplusmedcare.netlify.app/",
+  },
+  {
     title: "SF Fintech Dashboard",
     desc: "A modern fintech dashboard UI built with React, showcasing real-time analytics, financial data visualization, and responsive admin interface design. Focused on clean UI/UX and scalable component structure.",
     tags: ["React", "JavaScript", "CSS", "Dashboard UI"],
@@ -95,28 +113,10 @@ const PROJECTS = [
     live: "https://quickgome.netlify.app/",
   },
   {
-    title: "Healthcare Plus Medical UI",
-    desc: "A healthcare service landing page featuring structured medical information, treatment sections, and responsive layout designed for medical tourism and healthcare services.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    live: "https://healthcareplusmedcare.netlify.app/",
-  },
-  {
     title: "FlexLaunch SaaS Landing Page",
     desc: "A modern SaaS landing page built with a responsive layout and clean UI components, showcasing product features, call-to-action sections, and structured frontend design.",
     tags: ["React", "JavaScript", "CSS", "UI/UX"],
     live: "https://flexlauch.netlify.app/",
-  },
-  {
-    title: "Gym Fitness Website UI",
-    desc: "A responsive fitness website UI featuring training sections, trainer profiles, and contact interface, designed to showcase gym services and attract potential clients.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    live: "https://guerrero-27.github.io/gym_website/",
-  },
-  {
-    title: "Travel Website Landing Page",
-    desc: "A responsive travel website UI showcasing destinations, tour packages, and booking interface, designed to highlight tourism services with a clean and structured layout.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    live: "https://guerrero-27.github.io/travel_website/",
   },
   {
     title: "Food Delivery Website UI",

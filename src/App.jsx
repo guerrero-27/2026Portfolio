@@ -23,6 +23,7 @@ import gallery7 from "./assets/gallery/7.png";
 import gallery8 from "./assets/gallery/8.png";
 import gallery9 from "./assets/gallery/9.png";
 import gallery10 from "./assets/gallery/10.png";
+import ProjectDetail from "./ProjectDetail";
 import "./index.css";
 
 const GALLERY = [
@@ -69,60 +70,160 @@ const PROJECTS = [
     desc: "A responsive travel website UI showcasing destinations, tour packages, and booking interface, designed to highlight tourism services with a clean and structured layout.",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     live: "https://guerrero-27.github.io/travel_website/",
+    details: {
+      overview: "A fully responsive travel landing page built with vanilla HTML, CSS, and JavaScript.",
+      flow: [
+        "User lands on the hero section with a search bar for destinations.",
+        "Scrolls through featured destinations and tour packages.",
+        "Clicks a package to view pricing and trip details.",
+        "Fills out the booking inquiry form and submits.",
+      ],
+      highlights: ["Responsive grid layout", "Smooth scroll navigation", "Interactive booking form"],
+    },
   },
   {
     title: "Gym Fitness Website UI",
     desc: "A responsive fitness website UI featuring training sections, trainer profiles, and contact interface, designed to showcase gym services and attract potential clients.",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     live: "https://guerrero-27.github.io/gym_website/",
+    details: {
+      overview: "A gym and fitness landing page designed to attract new members and showcase training programs.",
+      flow: [
+        "Hero section introduces the gym with a strong CTA to join.",
+        "Users browse available training programs and class schedules.",
+        "Trainer profiles section builds trust with credentials.",
+        "Contact/membership form at the bottom for sign-ups.",
+      ],
+      highlights: ["Mobile-first design", "Trainer profile cards", "Membership CTA section"],
+    },
   },
   {
     title: "Healthcare Plus Medical UI",
     desc: "A healthcare service landing page featuring structured medical information, treatment sections, and responsive layout designed for medical tourism and healthcare services.",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     live: "https://healthcareplusmedcare.netlify.app/",
+    details: {
+      overview: "A medical service landing page targeted at patients seeking healthcare and medical tourism.",
+      flow: [
+        "Landing hero introduces the clinic with key services highlighted.",
+        "Users explore treatment categories and medical specializations.",
+        "Doctors/specialists section provides credentials and trust signals.",
+        "Appointment booking form is accessible throughout the page.",
+      ],
+      highlights: ["Structured content sections", "Trust-building doctor profiles", "Appointment form UI"],
+    },
   },
   {
     title: "SF Fintech Dashboard",
     desc: "A modern fintech dashboard UI built with React, showcasing real-time analytics, financial data visualization, and responsive admin interface design. Focused on clean UI/UX and scalable component structure.",
     tags: ["React", "JavaScript", "CSS", "Dashboard UI"],
     live: "https://sfintech.netlify.app/",
+    details: {
+      overview: "A React-based fintech admin dashboard with data visualization and financial management UI.",
+      flow: [
+        "User logs into the dashboard and lands on the analytics overview.",
+        "Charts and KPI cards display financial metrics at a glance.",
+        "Sidebar navigation routes to transactions, reports, and settings.",
+        "Data tables allow sorting and filtering of financial records.",
+      ],
+      highlights: ["React component architecture", "Chart/data visualization UI", "Responsive sidebar layout"],
+    },
   },
   {
     title: "McCare Healthcare Landing Page",
     desc: "A modern healthcare landing page UI inspired by job-matching platforms, designed with a clean layout, responsive structure, and user-friendly interface for medical service applications.",
     tags: ["React", "JavaScript", "CSS", "UI/UX"],
     live: "https://mccare.netlify.app/",
+    details: {
+      overview: "A React-built healthcare landing page with a job-board-style UI for connecting patients to medical services.",
+      flow: [
+        "Hero section presents the platform's value proposition.",
+        "Users browse available healthcare services or specialists.",
+        "Filter/search UI helps narrow down relevant services.",
+        "CTA buttons direct users to apply or contact a provider.",
+      ],
+      highlights: ["React component-based UI", "Filter/search interface", "Clean card-based listings"],
+    },
   },
   {
     title: "Holiday Explorer Travel UI",
     desc: "A responsive travel website UI built using a Bootstrap template, featuring destination listings, booking form interface, and structured layout for tour and travel services.",
     tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
     live: "https://holidayexplorer.netlify.app/",
+    details: {
+      overview: "A Bootstrap-powered travel site with destination listings and booking interface.",
+      flow: [
+        "Hero with search bar lets users look up destinations.",
+        "Destination cards display images, descriptions, and pricing.",
+        "Users click a destination to see detailed tour packages.",
+        "Booking form captures travel dates and passenger details.",
+      ],
+      highlights: ["Bootstrap grid system", "Destination card UI", "Booking form interface"],
+    },
   },
   {
     title: "Designo Agency Website UI",
     desc: "A responsive agency website UI built from a modern design template, featuring service sections, branding-focused layout, and clean component structure for digital agency presentations.",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     live: "https://designo-code.netlify.app/",
+    details: {
+      overview: "A digital agency portfolio site showcasing services, past work, and contact information.",
+      flow: [
+        "Hero section introduces the agency brand with a bold headline.",
+        "Services section outlines design, development, and branding offerings.",
+        "Portfolio/work section displays past projects with visuals.",
+        "Contact section with a form for project inquiries.",
+      ],
+      highlights: ["Branding-focused layout", "Portfolio showcase section", "Service offering cards"],
+    },
   },
   {
     title: "QuickGo URL Shortener UI",
     desc: "A modern URL shortener landing page built with a clean and responsive UI, featuring link input interface, analytics sections, and structured frontend components inspired by SaaS tools.",
     tags: ["React", "JavaScript", "CSS", "UI/UX"],
     live: "https://quickgome.netlify.app/",
+    details: {
+      overview: "A SaaS-style URL shortener landing page built with React, inspired by tools like Bitly.",
+      flow: [
+        "Hero section presents the shortener tool with a URL input field.",
+        "User pastes a long URL and clicks shorten to get a short link.",
+        "Analytics section shows click stats and link performance metrics.",
+        "Pricing section displays free and paid plan options.",
+      ],
+      highlights: ["URL input component", "Analytics stats UI", "SaaS pricing section"],
+    },
   },
   {
     title: "FlexLaunch SaaS Landing Page",
     desc: "A modern SaaS landing page built with a responsive layout and clean UI components, showcasing product features, call-to-action sections, and structured frontend design.",
     tags: ["React", "JavaScript", "CSS", "UI/UX"],
     live: "https://flexlauch.netlify.app/",
+    details: {
+      overview: "A React SaaS landing page with feature highlights, testimonials, and conversion-focused CTAs.",
+      flow: [
+        "Hero section with headline, subtext, and primary CTA button.",
+        "Features section uses icon cards to explain product benefits.",
+        "Testimonials/social proof section builds user trust.",
+        "Pricing and final CTA section drive sign-up conversions.",
+      ],
+      highlights: ["Feature highlight cards", "Testimonials section", "Conversion-focused CTA"],
+    },
   },
   {
     title: "Food Delivery Website UI",
     desc: "A responsive food delivery landing page showcasing menu items, service sections, and ordering interface design with a clean and user-friendly layout.",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     live: "https://guerrero-27.github.io/delivery_website/",
+    details: {
+      overview: "A food delivery landing page UI with menu browsing and order flow design.",
+      flow: [
+        "Hero section highlights fast delivery with a prominent order CTA.",
+        "Menu section displays food categories and featured items.",
+        "Users click an item to see details, price, and add to cart.",
+        "Order summary and delivery address form complete the flow.",
+      ],
+      highlights: ["Food menu grid", "Category filtering UI", "Order form interface"],
+    },
   },
 ];
 
@@ -151,6 +252,7 @@ export default function App() {
     () => localStorage.getItem("theme") || "dark",
   );
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [detailProject, setDetailProject] = useState(null);
   const [slide, setSlide] = useState(GALLERY.length);
   const visibleCount = () =>
     window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
@@ -179,6 +281,17 @@ export default function App() {
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const closeMobile = () => setMobileOpen(false);
+
+  if (detailProject) {
+    return (
+      <ProjectDetail
+        project={detailProject}
+        onBack={() => setDetailProject(null)}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+    );
+  }
 
   return (
     <>
@@ -424,6 +537,12 @@ export default function App() {
                       <ExternalLink size={14} />
                       Live Site
                     </a>
+                    <button
+                      className="project-link"
+                      onClick={() => setDetailProject(p)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>
@@ -641,6 +760,12 @@ export default function App() {
                           <ExternalLink size={14} />
                           Live Site
                         </a>
+                        <button
+                          className="project-link"
+                          onClick={() => setDetailProject(p)}
+                        >
+                          View Details
+                        </button>
                       </div>
                     </div>
                   </div>

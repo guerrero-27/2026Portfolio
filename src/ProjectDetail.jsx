@@ -2,6 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { ArrowLeft, ExternalLink, Sun, Moon } from "lucide-react";
+import gallery4 from "./assets/gallery/4.png";
+import gallery6 from "./assets/gallery/6.png";
+import gallery7 from "./assets/gallery/7.png";
+
+const exampleImages = [gallery4, gallery6, gallery7];
 
 export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -21,7 +26,11 @@ export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
           <ArrowLeft size={15} />
           Back to Portfolio
         </button>
-        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+        <button
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+        >
           {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
         </button>
       </div>
@@ -31,7 +40,9 @@ export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
         <div className="detail-header">
           <div className="detail-meta">
             {project.tags.map((t) => (
-              <span className="tag" key={t}>{t}</span>
+              <span className="tag" key={t}>
+                {t}
+              </span>
             ))}
           </div>
           <h1 className="detail-title">{project.title}</h1>
@@ -47,32 +58,60 @@ export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
           </a>
         </div>
 
-        {/* SCREENSHOT PREVIEW */}
-        <div className="detail-preview-wrap">
-          <div className="detail-browser-bar">
-            <div className="detail-browser-dots">
-              <span /><span /><span />
-            </div>
-            <div className="detail-browser-url">{project.live}</div>
-          </div>
-          <div className="detail-screenshot-box">
-            <img
-              src={screenshotUrl}
-              alt={`${project.title} screenshot`}
-              className="detail-screenshot"
-              onError={(e) => {
-                e.target.style.display = "none";
-                setIframeError(true);
-              }}
-            />
-            {iframeError && (
-              <div className="detail-screenshot-fallback">
-                <span>Preview not available</span>
-                <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
-                  <ExternalLink size={14} /> Open Site
-                </a>
+        {/* EXAMPLE GRID PREVIEW */}
+        <div className="pinterest-grid">
+          {/* Main tall card - spans 2 rows */}
+          <div className="pinterest-card pinterest-tall">
+            <div className="pinterest-card-inner">
+              <div className="pinterest-img-wrap">
+                <img
+                  src={exampleImages[0]}
+                  alt={`${project.title} example 1`}
+                  className="pinterest-img"
+                />
               </div>
-            )}
+              <div className="pinterest-card-overlay">
+                <span className="pinterest-card-title">{project.title}</span>
+                <span className="pinterest-card-url">{project.live}</span>
+              </div>
+              <span className="pinterest-badge">{project.tags[0]}</span>
+            </div>
+          </div>
+
+          {/* Top right card */}
+          <div className="pinterest-card pinterest-short">
+            <div className="pinterest-card-inner">
+              <div className="pinterest-img-wrap">
+                <img
+                  src={exampleImages[1]}
+                  alt={`${project.title} example 2`}
+                  className="pinterest-img"
+                />
+              </div>
+              <div className="pinterest-card-overlay">
+                <span className="pinterest-card-title">{project.title}</span>
+                <span className="pinterest-card-url">{project.live}</span>
+              </div>
+              <span className="pinterest-badge">{project.tags[1] || project.tags[0]}</span>
+            </div>
+          </div>
+
+          {/* Bottom right card */}
+          <div className="pinterest-card pinterest-short">
+            <div className="pinterest-card-inner">
+              <div className="pinterest-img-wrap">
+                <img
+                  src={exampleImages[2]}
+                  alt={`${project.title} example 3`}
+                  className="pinterest-img"
+                />
+              </div>
+              <div className="pinterest-card-overlay">
+                <span className="pinterest-card-title">{project.title}</span>
+                <span className="pinterest-card-url">{project.live}</span>
+              </div>
+              <span className="pinterest-badge">{project.tags[2] || project.tags[0]}</span>
+            </div>
           </div>
         </div>
 
@@ -88,7 +127,9 @@ export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
             <ol className="detail-flow-list">
               {project.details.flow.map((step, i) => (
                 <li key={i}>
-                  <span className="detail-flow-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="detail-flow-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <span>{step}</span>
                 </li>
               ))}
@@ -111,13 +152,22 @@ export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
 
         {/* LIVE IFRAME EMBED */}
         <div className="detail-iframe-section">
-          <div className="detail-card-label" style={{ marginBottom: "16px" }}>Live Preview</div>
+          <div className="detail-card-label" style={{ marginBottom: "16px" }}>
+            Live Preview
+          </div>
           <div className="detail-browser-bar">
             <div className="detail-browser-dots">
-              <span /><span /><span />
+              <span />
+              <span />
+              <span />
             </div>
             <div className="detail-browser-url">{project.live}</div>
-            <a href={project.live} target="_blank" rel="noreferrer" className="detail-browser-open">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="detail-browser-open"
+            >
               <ExternalLink size={12} />
             </a>
           </div>

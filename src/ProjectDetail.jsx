@@ -1,190 +1,183 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, ExternalLink, Sun, Moon } from "lucide-react";
-import gallery4 from "./assets/gallery/4.png";
-import gallery6 from "./assets/gallery/6.png";
-import gallery7 from "./assets/gallery/7.png";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Check,
+  Monitor,
+  Smartphone,
+  Sun,
+  Moon,
+} from "lucide-react";
 
-const exampleImages = [gallery4, gallery6, gallery7];
+const VIEWPORTS = [
+  { id: "desktop", label: "Desktop", Icon: Monitor },
+  { id: "mobile", label: "Mobile", Icon: Smartphone },
+];
 
 export default function ProjectDetail({ project, onBack, theme, toggleTheme }) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [iframeError, setIframeError] = useState(false);
+  const [viewport, setViewport] = useState("desktop");
 
-  const screenshotUrl = `https://image.thum.io/get/width/1200/crop/800/${project.live}`;
+  const displayUrl = project.live.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
 
   return (
-    <div className="detail-page">
+    <div className="pd-page">
       {/* TOP BAR */}
-      <div className="detail-topbar">
-        <button className="detail-back-btn" onClick={onBack}>
-          <ArrowLeft size={15} />
-          Back to Portfolio
-        </button>
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
-        </button>
+      <div className="pd-topbar">
+        <div className="pd-topbar-inner">
+          <button className="pd-back" onClick={onBack}>
+            <ArrowLeft size={15} />
+            Back to Portfolio
+          </button>
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+        </div>
       </div>
 
-      <div className="detail-content">
+      <main className="pd-main">
         {/* HEADER */}
-        <div className="detail-header">
-          <div className="detail-meta">
-            {project.tags.map((t) => (
-              <span className="tag" key={t}>
-                {t}
-              </span>
-            ))}
+        <header className="pd-hero">
+          <div className="pd-rise">
+            <h1 className="pd-title">{project.title}</h1>
+            <p className="pd-desc">{project.desc}</p>
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="pd-btn"
+            >
+              Visit Live Site
+              <ArrowUpRight size={16} />
+            </a>
           </div>
-          <h1 className="detail-title">{project.title}</h1>
-          <p className="detail-desc">{project.desc}</p>
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noreferrer"
-            className="detail-live-link"
-          >
-            <ExternalLink size={14} />
-            Visit Live Site
-          </a>
-        </div>
 
-        {/* EXAMPLE GRID PREVIEW */}
-        <div className="pinterest-grid">
-          {/* Main tall card - spans 2 rows */}
-          <div className="pinterest-card pinterest-tall">
-            <div className="pinterest-card-inner">
-              <div className="pinterest-img-wrap">
-                <img
-                  src={exampleImages[0]}
-                  alt={`${project.title} example 1`}
-                  className="pinterest-img"
-                />
+          <dl className="pd-facts pd-rise" style={{ "--i": 1 }}>
+            <div className="pd-fact">
+              <dt>Built with</dt>
+              <dd className="pd-tags">
+                {project.tags.map((t) => (
+                  <span className="tag" key={t}>
+                    {t}
+                  </span>
+                ))}
+              </dd>
+            </div>
+            <div className="pd-fact">
+              <dt>Live at</dt>
+              <dd className="pd-fact-url">{displayUrl}</dd>
+            </div>
+          </dl>
+        </header>
+
+        {/* LIVE PREVIEW */}
+        <section
+          className="pd-preview-section pd-rise"
+          style={{ "--i": 2 }}
+          aria-label="Live preview"
+        >
+          <div className="pd-preview">
+            <div className="pd-preview-bar">
+              <span className="pd-preview-url">{displayUrl}</span>
+              <div className="pd-seg" role="group" aria-label="Preview size">
+                {VIEWPORTS.map(({ id, label, Icon }) => (
+                  <button
+                    key={id}
+                    className="pd-seg-btn"
+                    aria-pressed={viewport === id}
+                    aria-label={label}
+                    title={label}
+                    onClick={() => setViewport(id)}
+                  >
+                    <Icon size={15} />
+                  </button>
+                ))}
               </div>
-              <div className="pinterest-card-overlay">
-                <span className="pinterest-card-title">{project.title}</span>
-                <span className="pinterest-card-url">{project.live}</span>
-              </div>
-              <span className="pinterest-badge">{project.tags[0]}</span>
+            </div>
+            <div className="pd-stage" data-viewport={viewport}>
+              {!iframeLoaded && (
+                <div className="pd-skeleton" role="status">
+                  <span className="pd-skeleton-nav" />
+                  <span className="pd-skeleton-line pd-skeleton-line-lg" />
+                  <span className="pd-skeleton-line" />
+                  <span className="pd-skeleton-block" />
+                  <span className="pd-sr-only">Loading preview</span>
+                </div>
+              )}
+              <iframe
+                src={project.live}
+                title={`${project.title} live preview`}
+                className={`pd-frame${iframeLoaded ? " is-loaded" : ""}`}
+                onLoad={() => setIframeLoaded(true)}
+                sandbox="allow-scripts allow-same-origin"
+              />
             </div>
           </div>
+          <p className="pd-preview-note">
+            This is the real site, running in a frame. If it stays blank,{" "}
+            <a href={project.live} target="_blank" rel="noreferrer">
+              open it in a new tab
+            </a>
+            .
+          </p>
+        </section>
 
-          {/* Top right card */}
-          <div className="pinterest-card pinterest-short">
-            <div className="pinterest-card-inner">
-              <div className="pinterest-img-wrap">
-                <img
-                  src={exampleImages[1]}
-                  alt={`${project.title} example 2`}
-                  className="pinterest-img"
-                />
-              </div>
-              <div className="pinterest-card-overlay">
-                <span className="pinterest-card-title">{project.title}</span>
-                <span className="pinterest-card-url">{project.live}</span>
-              </div>
-              <span className="pinterest-badge">{project.tags[1] || project.tags[0]}</span>
-            </div>
-          </div>
+        {/* OVERVIEW + FLOW */}
+        <div className="pd-body">
+          <section>
+            <h2 className="pd-h2">Overview</h2>
+            <p className="pd-overview">{project.details.overview}</p>
+            <ul className="pd-highlights">
+              {project.details.highlights.map((h) => (
+                <li key={h}>
+                  <Check size={16} aria-hidden="true" />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </section>
 
-          {/* Bottom right card */}
-          <div className="pinterest-card pinterest-short">
-            <div className="pinterest-card-inner">
-              <div className="pinterest-img-wrap">
-                <img
-                  src={exampleImages[2]}
-                  alt={`${project.title} example 3`}
-                  className="pinterest-img"
-                />
-              </div>
-              <div className="pinterest-card-overlay">
-                <span className="pinterest-card-title">{project.title}</span>
-                <span className="pinterest-card-url">{project.live}</span>
-              </div>
-              <span className="pinterest-badge">{project.tags[2] || project.tags[0]}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* TWO COLUMN: OVERVIEW + FLOW */}
-        <div className="detail-grid">
-          <div className="detail-card">
-            <div className="detail-card-label">Overview</div>
-            <p className="detail-card-text">{project.details.overview}</p>
-          </div>
-
-          <div className="detail-card">
-            <div className="detail-card-label">How It Works</div>
-            <ol className="detail-flow-list">
+          <section>
+            <h2 className="pd-h2">How it works</h2>
+            <ol className="pd-flow">
               {project.details.flow.map((step, i) => (
                 <li key={i}>
-                  <span className="detail-flow-num">
+                  <span className="pd-flow-num" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span>{step}</span>
                 </li>
               ))}
             </ol>
-          </div>
+          </section>
         </div>
 
-        {/* HIGHLIGHTS */}
-        <div className="detail-card">
-          <div className="detail-card-label">Key Highlights</div>
-          <div className="detail-highlights-grid">
-            {project.details.highlights.map((h, i) => (
-              <div className="detail-highlight-item" key={i}>
-                <span className="detail-highlight-dot" />
-                {h}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* LIVE IFRAME EMBED */}
-        <div className="detail-iframe-section">
-          <div className="detail-card-label" style={{ marginBottom: "16px" }}>
-            Live Preview
-          </div>
-          <div className="detail-browser-bar">
-            <div className="detail-browser-dots">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="detail-browser-url">{project.live}</div>
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="detail-browser-open"
-            >
-              <ExternalLink size={12} />
-            </a>
-          </div>
-          <div className="detail-iframe-wrap">
-            {!iframeLoaded && (
-              <div className="detail-iframe-loader">Loading preview…</div>
-            )}
-            <iframe
-              src={project.live}
-              title={project.title}
-              className="detail-iframe"
-              onLoad={() => setIframeLoaded(true)}
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
-        </div>
-      </div>
+        <footer className="pd-end">
+          <button className="pd-end-link" onClick={onBack}>
+            <ArrowLeft size={15} />
+            Back to Portfolio
+          </button>
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="pd-end-link"
+          >
+            Visit Live Site
+            <ArrowUpRight size={15} />
+          </a>
+        </footer>
+      </main>
     </div>
   );
 }
